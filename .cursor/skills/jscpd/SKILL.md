@@ -22,7 +22,7 @@ npx jscpd --config .jscpd.json --reporters ai crates/ scripts/
 
 Configuration: [`.jscpd.json`](../../../.jscpd.json) at repo root.
 
-**Note:** STEP-A1 `just verify` is build + clippy + fmt only. `just verify` will include jscpd in **STEP-A2** (see [docs/step-reviews/STEP-A1/README.md](../../../docs/step-reviews/STEP-A1/README.md)).
+**Note:** `just verify` runs build, clippy, fmt-check, test (nextest), jscpd, and deny (STEP-A2).
 
 ## AI reporter output
 
