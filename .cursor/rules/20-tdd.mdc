@@ -1,0 +1,14 @@
+---
+description: TDD discipline
+alwaysApply: true
+---
+
+- Step sequence inside a PR:
+  1. Commit `test(<crate>): <id> failing <name>` that is RED locally.
+  2. Commit `feat(<crate>): <id> implement <name>` that makes it GREEN.
+  3. Optional `refactor(<crate>): <id> <name>` with tests still green.
+- Exceptions (declare in PR body):
+  a) Pure refactor behind green tests.
+  b) Generated code.
+- Prefer the cheapest sufficient test tier.
+- Every new public item must ship with a test in the SAME PR.

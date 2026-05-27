@@ -1,0 +1,10 @@
+---
+description: SOLID enforcement
+alwaysApply: true
+---
+
+- S: one module = one responsibility stated in `//!` header.
+- O: extend via registry (tag → handler); no edits to closed match arms.
+- L: every trait has law property tests (same file as the trait).
+- I: ≤ 5 methods per trait. Split if larger.
+- D: modules depend on local traits; concrete impls inject at the boundary.

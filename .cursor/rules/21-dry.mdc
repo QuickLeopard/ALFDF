@@ -1,0 +1,7 @@
+---
+description: DRY enforcement
+alwaysApply: true
+---
+
+- No duplicated block ≥ 30 LOC / 60 tokens across workspace (jscpd).
+- Test helpers live in crates/<c>/tests/support/; no copy-paste helpers.

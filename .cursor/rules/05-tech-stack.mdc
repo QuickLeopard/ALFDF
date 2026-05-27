@@ -1,0 +1,31 @@
+---
+description: Pinned toolchain and tech stack versions (source of truth for agents)
+alwaysApply: true
+---
+
+# Tech stack (pinned)
+
+Do **not** upgrade languages, edition, or pinned toolchains in passing PRs. Bump only in a dedicated step that updates **this rule**, `rust-toolchain.toml`,  root `Cargo.toml` (`rust-version`, `resolver`), CI images where relevant, `README.md`, and `.DOCS/ALFDF-MVP0-Project-Spec-v0.1.md` examples together.
+
+## Rust
+
+- **Toolchain channel:** `1.95.0` (`rust-toolchain.toml`).
+- **Edition:** `2024` (workspace `Cargo.toml`).
+- **MSRV / `rust-version`:** `1.95` (workspace `Cargo.toml`; crates inherit via `rust-version.workspace`).
+- **Workspace resolver:** `3`.
+- **Components:** `rustfmt`, `clippy` (via `rust-toolchain.toml`).
+- **Formatting:** `rustfmt.toml` — `edition = "2024"`, `max_width = 100` (`group_imports` only if using nightly rustfmt; see comment there).
+
+## Dev & CI tooling (expected)
+
+- **`cargo-nextest`:** required for `just test` and `.githooks/pre-commit`. Install: `cargo install --locked cargo-nextest` (see [nexte.st from-source](https://nexte.st/docs/installation/from-source/)). CI uses `taiki-e/install-action@cargo-nextest`.
+- **`cargo-deny`:** required for `just deny` / `just verify`. Install: `cargo install --locked cargo-deny`. Do **not** run `cargo deny init` when `deny.toml` already exists; use `cargo deny check` only.
+- **`just`:** task runner (`justfile`).
+- **Node.js:** `npx` for `jscpd` / `scripts/jscpd_gate.sh` (CI uses Node 20).
+- **Python 3:** `scripts/fn_loc.py`, shell gates under `scripts/`.
+
+## Docs generation
+
+- **mdBook:** book source under `docs/` when built (`mdbook build` in CI optional until wired).
+
+When unsure, read `README.md` and the files named above; they override informal assumptions.

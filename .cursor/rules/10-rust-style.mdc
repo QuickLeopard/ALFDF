@@ -1,0 +1,16 @@
+---
+description: Rust coding standards (ALFDF MVP0 spec + workspace lints)
+globs: crates/**/*.rs
+alwaysApply: false
+---
+
+- Rust 2024; workspace `[workspace.lints]` / crate-root `#![warn(...)]` per pinned stack ([05-tech-stack.mdc](05-tech-stack.mdc)).
+- Function ≤ 100 LOC; module ≤ 500 LOC. Split before exceeding.
+- No unwrap/expect outside tests or `# Panics`-documented items.
+- No unsafe without `// SAFETY:`.
+- Public items: rustdoc with what/why + ≥1 example.
+- Module header `//!` answers "This module is responsible for …" in ≤12 words
+  and cites the `.DOCS/ALFDF-MVP0-Project-Spec-v0.1.md` section it implements (e.g. §3 ABAL, §8 storage).
+- thiserror for libs; anyhow only in future MVP1 `alfdf` CLI (§17 — not in MVP0 library crates).
+- Trait method count ≤ 5 (SOLID-I).
+- rustfmt: max_width=100, group_imports=StdExternalCrate.

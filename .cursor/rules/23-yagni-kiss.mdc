@@ -1,0 +1,10 @@
+---
+description: YAGNI and KISS
+alwaysApply: true
+---
+
+- No speculative generic: start concrete; generalize only at the 2nd call site.
+- No `pub` without a current caller; `cargo udeps` and unused-pub lint in CI.
+- Cyclomatic complexity ≤ 10; nesting ≤ 4. Decompose otherwise.
+- Iterator chains > 4 stages must be refactored for readability.
+- Feature flags only when a real consumer requires exclusion.

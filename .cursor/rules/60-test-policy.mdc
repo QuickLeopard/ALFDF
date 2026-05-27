@@ -1,0 +1,14 @@
+---
+description: Test discipline
+globs:
+  - crates/**/tests/**/*.rs
+  - crates/**/src/**/*.rs
+alwaysApply: false
+---
+
+- Snapshots: `insta`. Reviewed in the PR that adds them.
+- Property: `proptest`; regressions committed.
+- Integration: crates/<c>/tests/.
+- CLI: `assert_cmd` fixtures.
+- Shared helpers: crates/<c>/tests/support/ — never duplicated.
+- Fuzz targets: crates/<c>/fuzz/fuzz_targets/.

@@ -1,0 +1,10 @@
+---
+description: Commit/PR/step discipline
+alwaysApply: true
+---
+
+- One step = one PR. Step id (`STEP-<id>`, e.g. `STEP-A1`) REQUIRED in every commit subject.
+- Production diff ≤ 300 LOC per PR (tests excluded). Else invoke `split-step`.
+- Never force-push main. Branch: `step/STEP-<id>-<slug>`.
+- Use `skills/spec-amendment.md` before any `.DOCS/ALFDF-MVP0-Project-Spec-v0.1.md` change. Never mix with code.
+- When the user asks to commit, push, open PR, create PR, or ship a guide step, follow `skills/step-ship.md`.
