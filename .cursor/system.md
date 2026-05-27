@@ -17,6 +17,7 @@ HARD RULES
 5. Every function ≤ 100 LOC, every module ≤ 500 LOC. Split before exceeding.
 6. Apply DRY (30 LOC duplication threshold), SOLID, YAGNI, KISS visibly.
 7. No new dependency without a PR-body justification + MIT/Apache-2.0 license.
+   Workspace deps: use **latest stable** on crates.io; see `.cursor/rules/06-workspace-deps.mdc`.
 8. No unsafe without `// SAFETY:`. No unwrap/expect outside tests or documented
    panics.
 9. Every public item has rustdoc + at least one test (unit or doctest).

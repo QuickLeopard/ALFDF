@@ -59,6 +59,7 @@ Estimated effort: ~16 weeks for one experienced Rust engineer, ~8–10 weeks for
 - **Done when:** ADR merged.
 
 ### STEP-A4 — Add core utility crates
+- [x] Done
 - **Goal:** Wire common deps once: `serde`, `serde_json`, `thiserror`, `anyhow`, `tracing`, `blake3`, `proptest`, `insta`, `criterion`.
 - **Output:** `workspace.dependencies` block.
 - **Done when:** All crates reference shared versions via `workspace = true`.
