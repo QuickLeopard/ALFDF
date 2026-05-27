@@ -14,12 +14,17 @@ fn type_json_roundtrip_hand_written_cases() {
             .unwrap_or_else(|err| panic!("case {index}: serialize failed: {err}"));
         let reparsed: Type = serde_json::from_str(&encoded)
             .unwrap_or_else(|err| panic!("case {index}: re-deserialize failed: {err}"));
-        assert_eq!(parsed, reparsed, "case {index}: value round-trip mismatch");
+        assert_eq!(
+            parsed, reparsed,
+            "case {}: value round-trip mismatch",
+            index
+        );
         let reparsed_from_original: Type = serde_json::from_str(json)
             .unwrap_or_else(|err| panic!("case {index}: second deserialize failed: {err}"));
         assert_eq!(
             parsed, reparsed_from_original,
-            "case {index}: json canonical mismatch"
+            "case {}: json canonical mismatch",
+            index
         );
     }
 }
