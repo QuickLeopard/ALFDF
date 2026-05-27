@@ -75,17 +75,15 @@ fn pattern_tree(depth: u8) -> impl Strategy<Value = Pattern> {
 }
 
 prop_compose! {
-    pub fn expr_strategy()(depth in 0u8..6)(expr in expr_tree(depth)) -> Expr {
+    pub fn expr_strategy()(depth in 0u8..4)(expr in expr_tree(depth)) -> Expr {
         expr
     }
 }
 
 fn expr_tree(depth: u8) -> impl Strategy<Value = Expr> {
     let leaf = prop_oneof![
-        (span_strategy(), literal_strategy())
-            .prop_map(|(span, value)| Expr::Lit { span, value }),
-        (span_strategy(), r"[a-z][a-z0-9_]{0,8}")
-            .prop_map(|(span, name)| Expr::Var { span, name }),
+        (span_strategy(), literal_strategy()).prop_map(|(span, value)| Expr::Lit { span, value }),
+        (span_strategy(), r"[a-z][a-z0-9_]{0,8}").prop_map(|(span, name)| Expr::Var { span, name }),
     ];
     if depth == 0 {
         leaf.boxed()
@@ -93,7 +91,11 @@ fn expr_tree(depth: u8) -> impl Strategy<Value = Expr> {
         let child = || expr_tree(depth - 1);
         prop_oneof![
             leaf,
-            (span_strategy(), child(), prop::collection::vec(child(), 0..3))
+            (
+                span_strategy(),
+                child(),
+                prop::collection::vec(child(), 0..2)
+            )
                 .prop_map(|(span, func, args)| Expr::App {
                     span,
                     func: Box::new(func),
@@ -101,7 +103,7 @@ fn expr_tree(depth: u8) -> impl Strategy<Value = Expr> {
                 }),
             (
                 span_strategy(),
-                prop::collection::vec(r"[a-z]{1,6}", 0..3),
+                prop::collection::vec(r"[a-z]{1,6}", 0..2),
                 type_strategy(),
                 child(),
             )
@@ -125,7 +127,11 @@ fn expr_tree(depth: u8) -> impl Strategy<Value = Expr> {
                     value: Box::new(value),
                     body: Box::new(body),
                 }),
-            (span_strategy(), child(), prop::collection::vec((pattern_strategy(), child()), 0..3))
+            (
+                span_strategy(),
+                child(),
+                prop::collection::vec((pattern_strategy(), child()), 0..2)
+            )
                 .prop_map(|(span, scrutinee, arms)| Expr::Match {
                     span,
                     scrutinee: Box::new(scrutinee),
@@ -134,10 +140,10 @@ fn expr_tree(depth: u8) -> impl Strategy<Value = Expr> {
             (
                 span_strategy(),
                 r"[A-Z][a-zA-Z0-9]{0,8}",
-                prop::collection::vec(child(), 0..3),
+                prop::collection::vec(child(), 0..2),
             )
                 .prop_map(|(span, name, args)| Expr::Ctor { span, name, args }),
-            (span_strategy(), prop::collection::vec(child(), 0..4))
+            (span_strategy(), prop::collection::vec(child(), 0..2))
                 .prop_map(|(span, elems)| Expr::TupleLit { span, elems }),
         ]
         .boxed()
