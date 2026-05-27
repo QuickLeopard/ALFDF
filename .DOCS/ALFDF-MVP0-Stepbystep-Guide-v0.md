@@ -54,6 +54,7 @@ Estimated effort: ~16 weeks for one experienced Rust engineer, ~8–10 weeks for
 - **Done when:** Two demo PRs (one passing, one failing) confirm gating.
 
 ### STEP-A3 — ADR directory + first ADR
+- [x] Done
 - **Goal:** `docs/adr/` with `0001-rust-implementation.md`.
 - **Notes:** Use MADR template.
 - **Done when:** ADR merged.
