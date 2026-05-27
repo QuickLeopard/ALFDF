@@ -9,4 +9,7 @@ clippy:
 fmt-check:
     cargo fmt --all -- --check
 
+jscpd:
+    ./scripts/jscpd_gate.sh
+
 verify: build clippy fmt-check

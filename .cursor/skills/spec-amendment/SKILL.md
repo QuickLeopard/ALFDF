@@ -1,3 +1,8 @@
+---
+name: spec-amendment
+description: Amends .DOCS/ALFDF-MVP0-Project-Spec-v0.1.md via a dedicated STEP-id.amend step and ADR. Use only when a guide step uncovers a genuine spec flaw; never mix with production code commits.
+---
+
 # Skill: Amend ALFDF MVP0 project spec
 
 WHEN Only when a step uncovers a genuine spec flaw.

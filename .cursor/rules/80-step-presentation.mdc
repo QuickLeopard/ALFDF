@@ -3,7 +3,7 @@ description: Mandatory step-finish presentation and written review
 alwaysApply: true
 ---
 
-- Before a guide step is considered complete, follow `skills/step-finish-presentation.md`.
+- Before a guide step is considered complete, follow `skills/step-finish-presentation/SKILL.md`.
 - Each completed step must commit `docs/step-reviews/STEP-<id>/README.md` and `slides.md` in the **same** step PR (split steps: one folder per sub-step PR).
 - When the step is finished, set that step’s `- [x] Done` checkbox in `.DOCS/ALFDF-MVP0-Stepbystep-Guide-v0.md` in that **same** step PR — do not defer a guide-only follow-up on `main` after merge (one step = one PR).
 - `README.md` must include whole-project progress (phase/step tally or pointer to `.DOCS/ALFDF-MVP0-Stepbystep-Guide-v0.md` checklists), exact commands and test outcomes, benchmark outcomes or `Benchmarks: not applicable` with reason, and a **Review** section.

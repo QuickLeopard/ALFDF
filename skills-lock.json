@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "dry-refactoring": {
+      "source": "kucherenko/jscpd",
+      "sourceType": "github",
+      "skillPath": ".cursor/skills/dry-refactoring/SKILL.md",
+      "computedHash": "1508b0e2e49ca1b11349b8f2a2a43aa25cf79970183ba867f47a05fb42c53245"
+    },
+    "find-skills": {
+      "source": "project",
+      "sourceType": "local",
+      "skillPath": ".cursor/skills/find-skills/SKILL.md",
+      "computedHash": "b2472333f0f56bb7a881d3027cb49ad8106bbf8d98a213560583cb2ca22d00f5"
+    },
+    "jscpd": {
+      "source": "kucherenko/jscpd",
+      "sourceType": "github",
+      "skillPath": ".cursor/skills/jscpd/SKILL.md",
+      "computedHash": "2eb091e7a0f40de318b2959d394e3fcb7d7218851783b0ab88559db00ead3516"
+    }
+  }
+}

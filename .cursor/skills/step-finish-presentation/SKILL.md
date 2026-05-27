@@ -1,3 +1,8 @@
+---
+name: step-finish-presentation
+description: Creates docs/step-reviews/STEP-id artifacts and marks the step Done in the ALFDF step guide. Use before closing a guide step PR or when rule 80 step presentation is required.
+---
+
 # Skill: Step-finish presentation and review
 
 WHEN After implementation for a guide step is complete and `just verify` (or the project-equivalent) is green, before marking the step’s `- [ ] Done` checkbox in `.DOCS/ALFDF-MVP0-Stepbystep-Guide-v0.md` or opening the step PR for final review. The step review folder **and** the guide checkbox update belong in the **same** step PR (one step = one PR); do not document “merge then tick the guide on `main`” as a follow-up. If a step was split, each sub-step PR gets its own folder.
