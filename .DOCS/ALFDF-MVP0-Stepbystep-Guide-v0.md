@@ -38,6 +38,7 @@ Estimated effort: ~16 weeks for one experienced Rust engineer, ~8–10 weeks for
 ## Phase A — Foundations
 
 ### STEP-A1 — Bootstrap Rust workspace
+- [x] Done
 - **Goal:** Empty workspace with all 14 crate skeletons compiling.
 - **Inputs:** None.
 - **Output:** `Cargo.toml` (workspace) + 14 empty `crates/alfdf-*/` libraries.
