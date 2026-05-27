@@ -75,6 +75,7 @@ Estimated effort: ~16 weeks for one experienced Rust engineer, ~8–10 weeks for
 - **Done when:** `Type` is `Clone + Eq + Hash + Serialize + Deserialize`.
 
 ### STEP-B2 — Define core expression enum `Expr`
+- [x] Done
 - **Goal:** `Lit`, `Var`, `App`, `Lambda`, `Let`, `Match`, `Ctor`, `TupleLit`.
 - **Notes:** Each variant carries a `Span` (file, byte range) for diagnostics.
 - **Tests:** JSON round-trip property test (10k random `Expr` via `proptest`).
