@@ -1,0 +1,25 @@
+---
+description: Workspace dependency versions — use latest stable pins
+alwaysApply: true
+---
+
+# Workspace dependencies
+
+All third-party crates are declared **once** in root `Cargo.toml` `[workspace.dependencies]`. Member crates use `{ workspace = true }` only — no duplicate version pins in `crates/*/Cargo.toml`.
+
+## Version policy
+
+- **Prefer the latest stable release** on [crates.io](https://crates.io) when adding or refreshing workspace dependencies.
+- Before bumping, run `cargo search <crate> --limit 1` (or check crates.io) and set the version in `[workspace.dependencies]`, then `cargo generate-lockfile` (or `cargo update -p <crate>`) and `just verify`.
+- **`Cargo.lock` must match** the workspace pins: after any `[workspace.dependencies]` change, regenerate the lockfile and confirm resolved versions equal the declared pins.
+- Record the authoritative pin list in `.cursor/rules/05-tech-stack.mdc` whenever workspace deps change.
+- New dependencies still require PR-body justification and MIT/Apache-2.0 (or explicitly allowed) license per `system.md` rule 7.
+- Do **not** downgrade to older versions for convenience; fix breakage (API changes, `deny.toml` licenses) instead.
+
+## Adding a dependency
+
+1. Confirm latest stable version on crates.io.
+2. Add to `[workspace.dependencies]` in root `Cargo.toml`.
+3. Wire member crates with `workspace = true`.
+4. Update `05-tech-stack.mdc` workspace table.
+5. Run `just verify`; extend `deny.toml` if new transitive licenses appear.

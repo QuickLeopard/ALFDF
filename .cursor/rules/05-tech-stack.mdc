@@ -28,4 +28,20 @@ Do **not** upgrade languages, edition, or pinned toolchains in passing PRs. Bump
 
 - **mdBook:** book source under `docs/` when built (`mdbook build` in CI optional until wired).
 
+## Workspace dependencies (pinned)
+
+Declared in root `Cargo.toml` `[workspace.dependencies]`. Members inherit via `{ workspace = true }`. **Use latest stable** on crates.io when adding or refreshing — see `.cursor/rules/06-workspace-deps.mdc`.
+
+| Crate | Version | Role |
+|-------|---------|------|
+| `serde` | `1.0.228` | Serialization (derive) |
+| `serde_json` | `1.0.150` | JSON |
+| `thiserror` | `2.0.18` | Library error types |
+| `anyhow` | `1.0.102` | Application errors (CLI later) |
+| `tracing` | `0.1.44` | Observability |
+| `blake3` | `1.8.5` | Content hashing |
+| `proptest` | `1.11.0` | Property tests (dev) |
+| `insta` | `1.47.2` | Snapshot tests (dev) |
+| `criterion` | `0.8.2` | Benchmarks (dev; `html_reports`) |
+
 When unsure, read `README.md` and the files named above; they override informal assumptions.
