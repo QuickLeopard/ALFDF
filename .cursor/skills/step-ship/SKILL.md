@@ -1,10 +1,15 @@
+---
+name: step-ship
+description: Commits, pushes, and opens PRs for ALFDF guide steps (RED/GREEN/docs modes). Use when the user says commit, push, open PR, ship this step, or finish this guide step.
+---
+
 # Skill: Step ship — commit, push, PR
 
 Use when the user says: **commit**, **push**, **open PR**, **create PR**, **ship this step**, or **finish this guide step**.
 
 Do **not** run `git commit` unless the user explicitly asked to **commit** or used **ship this step** / **finish this guide step**.
 
-Hard refs: [.cursor/system.md](../system.md), [.cursor/rules/70-commit-policy.mdc](../rules/70-commit-policy.mdc), [step-finish-presentation.md](step-finish-presentation.md), [80-step-presentation.mdc](../rules/80-step-presentation.mdc), [split-step.md](split-step.md).
+Hard refs: [.cursor/system.md](../../system.md), [.cursor/rules/70-commit-policy.mdc](../../rules/70-commit-policy.mdc), [step-finish-presentation](../step-finish-presentation/SKILL.md), [80-step-presentation.mdc](../../rules/80-step-presentation.mdc), [split-step](../split-step/SKILL.md).
 
 ---
 
@@ -22,15 +27,15 @@ Hard refs: [.cursor/system.md](../system.md), [.cursor/rules/70-commit-policy.md
 ### GREEN / refactor commit mode
 
 - **When:** User asked to commit implementation that makes tests pass, or a refactor with tests still green.
-- **Subject:** `feat(<crate>): STEP-<id> …`, `fix(<crate>): STEP-<id> …`, or `refactor(<crate>): STEP-<id> …` per [system.md](../system.md).
+- **Subject:** `feat(<crate>): STEP-<id> …`, `fix(<crate>): STEP-<id> …`, or `refactor(<crate>): STEP-<id> …` per [system.md](../../system.md).
 - **Verify:** `just verify` **must** be green before commit.
-- **Order:** New `crates/**/src/**/*.rs` must respect `scripts/tdd-order.sh` (preceding `test(...):` commit when required).
+- **Order:** When `scripts/tdd-order.sh` exists (STEP-A2+), new `crates/**/src/**/*.rs` must follow it (preceding `test(...):` commit when required). Until then, keep RED before GREEN commits manually.
 - **Footer (recommended):** `Refs: .DOCS/ALFDF-MVP0-Stepbystep-Guide-v0.md#STEP-<id>`
 
 ### Step review / docs commit mode
 
 - **When:** Step presentation and guide checkbox are ready to land in the **same** PR as the step (rule 80).
-- **Follow:** [step-finish-presentation.md](step-finish-presentation.md) in full.
+- **Follow:** [step-finish-presentation](../step-finish-presentation/SKILL.md) in full.
 - **Verify:** `just verify` green before commit.
 - **Subject:** `docs(step-review): STEP-<id> …` or `docs(step-guide): STEP-<id> …` as appropriate.
 
@@ -38,7 +43,7 @@ Hard refs: [.cursor/system.md](../system.md), [.cursor/rules/70-commit-policy.md
 
 - **When:** User asked to **push**.
 - **Working tree:** Must be **clean** (no unstaged/uncommitted changes) unless the user also asked to **commit** in the same instruction; if dirty, stop and ask.
-- **Branch:** Prefer `step/STEP-<id>-<slug>`. If on another branch for a guide step, stop and ask whether to rename or create the correct branch ([70-commit-policy.mdc](../rules/70-commit-policy.mdc)).
+- **Branch:** Prefer `step/STEP-<id>-<slug>`. If on another branch for a guide step, stop and ask whether to rename or create the correct branch ([70-commit-policy.mdc](../../rules/70-commit-policy.mdc)).
 - **Command:** `git push -u origin HEAD` when upstream missing; otherwise `git push`.
 - **Never** force-push `main`.
 
@@ -48,7 +53,7 @@ Hard refs: [.cursor/system.md](../system.md), [.cursor/rules/70-commit-policy.md
 - **Working tree:** Must be **clean** and commits **pushed** to `origin`. If dirty or unpushed, stop and ask (unless user explicitly combined “commit, push, open PR”).
 - **Gather (before `gh pr create`):** `git status`, `git diff`, `git log origin/main..HEAD --oneline`, `git diff origin/main...HEAD`, and confirm branch tracks `origin/<branch>`.
 - **Title:** `[STEP-<id>] <short title>` per `.DOCS/ALFDF-MVP0-Stepbystep-Guide-v0.md`.
-- **Body sections:** Summary; Test plan (checkboxes, real `just verify` / targeted test outcomes — **no invented** hashes, timings, or benchmark numbers per [system.md](../system.md)); **Dependency justification** if `Cargo.toml` / `Cargo.lock` changed; **Benchmark evidence** only from actual runs if claiming numbers; link `docs/step-reviews/STEP-<id>/README.md`.
+- **Body sections:** Summary; Test plan (checkboxes, real `just verify` / targeted test outcomes — **no invented** hashes, timings, or benchmark numbers per [system.md](../../system.md)); **Dependency justification** if `Cargo.toml` / `Cargo.lock` changed; **Benchmark evidence** only from actual runs if claiming numbers; link `docs/step-reviews/STEP-<id>/README.md`.
 - **Command:** `gh pr create --base main` (or `gh pr edit` if PR already exists for this branch).
 
 ### Ship this step (combined)
@@ -56,7 +61,7 @@ Hard refs: [.cursor/system.md](../system.md), [.cursor/rules/70-commit-policy.md
 Run in order when the user says **ship this step** or **finish this guide step**:
 
 1. Ensure implementation + tests complete; `just verify` green.
-2. Ensure [step-finish-presentation.md](step-finish-presentation.md) artifacts exist and guide checkbox updated in the same PR.
+2. Ensure [step-finish-presentation](../step-finish-presentation/SKILL.md) artifacts exist and guide checkbox updated in the same PR.
 3. Commit any remaining docs (docs commit mode).
 4. Push mode.
 5. PR mode.
@@ -67,9 +72,9 @@ Run in order when the user says **ship this step** or **finish this guide step**
 
 - User asked only **open PR** but `git status` is not clean → stop; ask to commit or stash.
 - **GREEN / docs / PR** mode while `just verify` is red → stop; fix or report.
-- Completing a guide step without `docs/step-reviews/STEP-<id>/README.md` + `slides.md` → stop; follow [step-finish-presentation.md](step-finish-presentation.md).
-- New crates.io / workspace dependency without PR-body justification + license note → stop; [.cursor/system.md](../system.md) rule 7.
-- Production diff likely > 300 LOC (tests excluded) → stop; invoke [split-step.md](split-step.md) / [70-commit-policy.mdc](../rules/70-commit-policy.mdc).
+- Completing a guide step without `docs/step-reviews/STEP-<id>/README.md` + `slides.md` → stop; follow [step-finish-presentation](../step-finish-presentation/SKILL.md).
+- New crates.io / workspace dependency without PR-body justification + license note → stop; [.cursor/system.md](../../system.md) rule 7.
+- Production diff likely > 300 LOC (tests excluded) → stop; invoke [split-step](../split-step/SKILL.md) / [70-commit-policy.mdc](../../rules/70-commit-policy.mdc).
 
 ---
 

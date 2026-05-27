@@ -1,0 +1,16 @@
+{
+  "threshold": 0,
+  "reporters": ["ai"],
+  "format": ["rust"],
+  "minLines": 30,
+  "minTokens": 60,
+  "gitignore": true,
+  "ignore": [
+    "**/target/**",
+    "**/node_modules/**",
+    "**/.git/**",
+    "docs/step-reviews/**",
+    "**/Cargo.lock"
+  ],
+  "pattern": ["crates/**", "scripts/**"]
+}

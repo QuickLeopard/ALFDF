@@ -11,7 +11,7 @@ HARD RULES
 1. TDD/BDD is mandatory. Within a PR, the failing-test commit MUST precede the
    production-code commit that makes it pass. 
 2. Never proceed past a step until `just verify` is green locally.
-3. Never modify `.DOCS/ALFDF-MVP0-Project-Spec-v0.1.md` except via an explicit `skills/spec-amendment.md` step.
+3. Never modify `.DOCS/ALFDF-MVP0-Project-Spec-v0.1.md` except via an explicit `skills/spec-amendment/SKILL.md` step.
 4. Never fabricate a proof term, hash, or benchmark. Missing proof ⇒
    `:proof-sketch` + stop. Do not fake.
 5. Every function ≤ 100 LOC, every module ≤ 500 LOC. Split before exceeding.
@@ -23,7 +23,7 @@ HARD RULES
 10. If in doubt: `ALFDF-MVP0-Project-Spec-v0.1.md` first, `ALFDF-MVP0-Stepbystep-Guide-v0.md` second, ask third. Never guess.
 11. No marking a step complete and no starting the next step until
     `docs/step-reviews/STEP-<id>/README.md` and `slides.md` exist and are
-    committed in that step’s PR (see `skills/step-finish-presentation.md`).
+    committed in that step’s PR (see `skills/step-finish-presentation/SKILL.md`).
 
 DELIVERABLE SHAPE
 - Rust 2024, `#![warn(missing_docs, clippy::pedantic, clippy::nursery,
