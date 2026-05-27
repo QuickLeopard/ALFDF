@@ -17,7 +17,10 @@ fn type_json_roundtrip_hand_written_cases() {
         assert_eq!(parsed, reparsed, "case {index}: value round-trip mismatch");
         let reparsed_from_original: Type = serde_json::from_str(json)
             .unwrap_or_else(|err| panic!("case {index}: second deserialize failed: {err}"));
-        assert_eq!(parsed, reparsed_from_original, "case {index}: json canonical mismatch");
+        assert_eq!(
+            parsed, reparsed_from_original,
+            "case {index}: json canonical mismatch"
+        );
     }
 }
 

@@ -69,6 +69,7 @@ Estimated effort: ~16 weeks for one experienced Rust engineer, ~8–10 weeks for
 ## Phase B — AST and hashing (`alfdf-ast`)
 
 ### STEP-B1 — Define core type enum `Type`
+- [x] Done
 - **Goal:** Rust enum for ABAL types: `Var(String)`, `Con(String, Vec<Type>)`, `Arrow(Box<Type>, Box<Type>)`, `Tuple(Vec<Type>)`.
 - **Tests:** Round-trip `serde_json` 100 hand-written cases.
 - **Done when:** `Type` is `Clone + Eq + Hash + Serialize + Deserialize`.
