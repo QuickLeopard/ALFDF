@@ -47,6 +47,7 @@ Estimated effort: ~16 weeks for one experienced Rust engineer, ~8–10 weeks for
 - **Done when:** CI runs `cargo build && cargo clippy -- -D warnings && cargo fmt -- --check` green.
 
 ### STEP-A2 — CI pipeline
+- [x] Done
 - **Goal:** GitHub Actions (or equivalent) runs build + test + clippy + fmt + `cargo deny check`.
 - **Output:** `.github/workflows/ci.yml`.
 - **Tests:** PR with broken fmt fails CI; PR with passing checks succeeds.
